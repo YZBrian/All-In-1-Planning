@@ -9,13 +9,13 @@ namespace All_In_1_Planning.Data
 {
     public class Context : DbContext
     {
-        private DbSet<Event> Events { get; set; }
+        private DbSet<EventModel> Events { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
                 .UseMySQL(
-                    @"Server=localhost;Database=All-In-1Planning;Uid=root;Pwd=;SslMode=None");
+                    @"Server=localhost;Database=All-In-1Planning;Username=root;SslMode=none;");
         }
     }
 }

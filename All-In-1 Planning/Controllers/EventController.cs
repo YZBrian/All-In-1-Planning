@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using All_In_1_Planning.Models;
 using Microsoft.Extensions.Logging;
+using All_In_1_Planning.Logic;
+using Microsoft.AspNetCore.Http;
 
 namespace All_In_1_Planning.Controllers
 {
@@ -12,6 +15,30 @@ namespace All_In_1_Planning.Controllers
     [Route("[controller]")]
     public class EventController : ControllerBase
     {
+
+        [HttpPost("CreateEvent")]
+        public int CreateEvent(DateTime datetime, string description)
+        {
+            EventLogic eventLogic = new EventLogic();
+            if (eventLogic.CreateEvent(datetime,description))
+            {
+                return StatusCodes.Status200OK;
+            }
+            else
+            {
+                return StatusCodes.Status500InternalServerError;
+            }
+
+        }
+
+        [HttpGet("GetAllEvents")]
+        public async Task<EventListModel> GetAllEvents()
+        {
+            EventLogic eventLogic = new EventLogic();
+            EventListModel eventListModel = await eventLogic.GetAllEvents();
+            return eventListModel;
+        }
+
 
         private static readonly string[] Descriptions = new[]
         {
@@ -25,17 +52,17 @@ namespace All_In_1_Planning.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public IEnumerable<Event> Get()
-        {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new Event
-            {
-                Id = rng.Next(0, 11),
-                DateTime = new DateTime(2021, rng.Next(1, 13), rng.Next(29), rng.Next(12), rng.Next(60), rng.Next(60)),
-                Description = Descriptions[rng.Next(Descriptions.Length)]
-            })
-            .ToArray();
-        }
+        //[HttpGet]
+        //public IEnumerable<EventModel> Get()
+        //{
+        //    var rng = new Random();
+        //    return Enumerable.Range(1, 5).Select(index => new EventModel
+        //    {
+        //        Id = rng.Next(0, 11),
+        //        DateTime = new DateTime(2021, rng.Next(1, 13), rng.Next(1, 29), rng.Next(12), rng.Next(60), rng.Next(60)),
+        //        Description = Descriptions[rng.Next(Descriptions.Length)]
+        //    })
+        //    .ToArray();
+        //}
     }
 }
