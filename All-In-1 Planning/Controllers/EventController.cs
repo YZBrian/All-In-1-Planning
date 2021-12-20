@@ -26,7 +26,7 @@ namespace All_In_1_Planning.Controllers
             }
             else
             {
-                return StatusCodes.Status500InternalServerError;
+                return StatusCodes.Status500InternalServerError; //No Go!
             }
 
         }
@@ -52,17 +52,19 @@ namespace All_In_1_Planning.Controllers
             _logger = logger;
         }
 
-        //[HttpGet]
-        //public IEnumerable<EventModel> Get()
-        //{
-        //    var rng = new Random();
-        //    return Enumerable.Range(1, 5).Select(index => new EventModel
-        //    {
-        //        Id = rng.Next(0, 11),
-        //        DateTime = new DateTime(2021, rng.Next(1, 13), rng.Next(1, 29), rng.Next(12), rng.Next(60), rng.Next(60)),
-        //        Description = Descriptions[rng.Next(Descriptions.Length)]
-        //    })
-        //    .ToArray();
-        //}
+        [HttpPost("DeleteEvent")]
+        public int DeleteEvent(int id)
+        {
+            EventLogic eventLogic = new EventLogic();
+            if (eventLogic.DeleteEvent(id))
+            {
+                return StatusCodes.Status200OK;
+            }
+            else
+            {
+                return StatusCodes.Status500InternalServerError; //No Go!
+            }
+
+        }
     }
 }

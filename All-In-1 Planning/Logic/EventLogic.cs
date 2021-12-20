@@ -61,5 +61,17 @@ namespace All_In_1_Planning.Logic
 
             return null;
         }
+
+        public bool DeleteEvent(int id)
+        {
+            string query = "DELETE FROM events WHERE Id=@id";
+            MySqlCommand command = new MySqlCommand(query, dataBaseConnection);
+            dataBaseConnection.Open();
+            command.Parameters.AddWithValue("@id", id);
+
+            command.ExecuteNonQuery();
+            return true;
+        }
+
     }
 }
