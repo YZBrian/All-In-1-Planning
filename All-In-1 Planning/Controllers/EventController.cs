@@ -52,7 +52,7 @@ namespace All_In_1_Planning.Controllers
             _logger = logger;
         }
 
-        [HttpPost("DeleteEvent")]
+        [HttpDelete("DeleteEvent")]
         public int DeleteEvent(int id)
         {
             EventLogic eventLogic = new EventLogic();
