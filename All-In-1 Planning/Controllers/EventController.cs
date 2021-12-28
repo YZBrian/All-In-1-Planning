@@ -17,10 +17,10 @@ namespace All_In_1_Planning.Controllers
     {
 
         [HttpPost("CreateEvent")]
-        public int CreateEvent(DateTime datetime, string description)
+        public int CreateEvent(DateTime dateTime, string description, bool hasPriority)
         {
             EventLogic eventLogic = new EventLogic();
-            if (eventLogic.CreateEvent(datetime,description))
+            if (eventLogic.CreateEvent(dateTime,description, hasPriority))
             {
                 return StatusCodes.Status200OK;
             }

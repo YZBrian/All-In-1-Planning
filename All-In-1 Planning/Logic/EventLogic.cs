@@ -16,13 +16,14 @@ namespace All_In_1_Planning.Logic
         MySqlDataReader reader;
         readonly MySqlConnection dataBaseConnection = DbConn.Connection();
 
-        public bool CreateEvent(DateTime dateTime, string description)
+        public bool CreateEvent(DateTime dateTime, string description, bool hasPriority)
         {
-            string query = "INSERT INTO events (dateTime, description) VALUES (@dateTime, @description);";
+            string query = "INSERT INTO events (dateTime, description, hasPriority) VALUES (@dateTime, @description, @hasPriority);";
             MySqlCommand command = new MySqlCommand(query, dataBaseConnection);
             dataBaseConnection.Open();
             command.Parameters.AddWithValue("@dateTime", dateTime);
-            command.Parameters.AddWithValue("@Description", description);
+            command.Parameters.AddWithValue("@description", description);
+            command.Parameters.AddWithValue("@hasPriority", hasPriority);
 
             command.ExecuteNonQuery();
             return true;
@@ -45,7 +46,8 @@ namespace All_In_1_Planning.Logic
                         int eventId = reader.GetInt32("Id");
                         DateTime eventDateTime = reader.GetDateTime("DateTime");
                         string eventDescription = reader.GetString("Description");
-                        EventModel eventModel = new EventModel(eventId, eventDateTime, eventDescription);
+                        bool eventHasPriority = reader.GetBoolean("HasPriority");
+                        EventModel eventModel = new EventModel(eventId, eventDateTime, eventDescription, eventHasPriority);
 
                         eventList.Events.Add(eventModel);
                     }
