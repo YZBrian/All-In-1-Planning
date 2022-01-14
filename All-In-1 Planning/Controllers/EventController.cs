@@ -39,19 +39,6 @@ namespace All_In_1_Planning.Controllers
             return eventListModel;
         }
 
-
-        private static readonly string[] Descriptions = new[]
-        {
-            "Feestje Anne-Linde.", "Venom Let There Be Carnage", "Tandarts", "Kapper", "School Meeting", "Uiteten met Rachèl", "Wintersport", "Pokemon BD & SP Release", "Life Beyond 3"
-        };
-
-        private readonly ILogger<EventController> _logger;
-
-        public EventController(ILogger<EventController> logger)
-        {
-            _logger = logger;
-        }
-
         [HttpDelete("DeleteEvent")]
         public int DeleteEvent(int id)
         {

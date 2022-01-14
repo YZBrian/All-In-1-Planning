@@ -9,7 +9,6 @@ namespace All_In_1_Planning.Data
 {
     public class Context : DbContext
     {
-        private DbSet<EventModel> Events { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
