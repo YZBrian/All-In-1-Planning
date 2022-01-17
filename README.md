@@ -12,7 +12,7 @@ These events can then be viewed in a simple way to keep an overview on all upcom
 
 ## Technologies:
 In this project, the following technologies have been used. I've added hyperlinks for easy access.
-- C# (in [Visual Studio](https://visualstudio.microsoft.com/downloads/)) for the backend. Documenation for: [C#](https://docs.microsoft.com/en-us/dotnet/csharp/) and [Microsoft.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-6.0).
+- C# (in [Visual Studio](https://visualstudio.microsoft.com/downloads/)) for the backend. Documentation for: [C#](https://docs.microsoft.com/en-us/dotnet/csharp/) and [Microsoft.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-6.0).
 - [Vue.js](https://vuejs.org/) with HTML and CSS for the frontend. I've added my personal frontend repository [here](https://github.com/YZBrian/PlannerFrontend).
 - A MySql (using [MySql Workbench](https://dev.mysql.com/downloads/workbench/)) database for data storage.
 
